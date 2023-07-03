@@ -1,0 +1,158 @@
+html{
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+img{
+  max-width: 100%;
+}
+
+.title{
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.container{
+  background: #1c92d2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content{
+  max-width: 960px;
+  width: 100%;
+  height: 80vh;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-radius: 4px;
+  position: relative;
+  padding: 1.8em;
+  overflow: scroll;
+
+}
+.actions{
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+.close{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #1c92d2;
+  display: inline-block;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.address{
+  font-weight: bold;
+  color: #1c92d2;
+  font-size: 1.2em;
+  margin-top: 2em;
+  display: inline-block;
+}
+
+.main-image{
+  float: left;
+  margin-right: 1em;
+  height: 300px;
+}
+
+.red{
+  height:200px;
+  width:100px;
+  background-color: red;
+}
+
+.paragraph{
+  line-height: 1.8em;
+  font-weight: 300;
+}
+
+.table{
+  width: 100%;
+  border-spacing: 0;
+}
+
+.fa-star, .fa-star-o{
+  color: yellow;
+}
+
+.table td, .table th{
+  padding: 1em;
+  text-align: left;
+}
+
+.table tr:nth-child(even){
+  background-color:#1c92d2;
+}
+
+.title-item{
+  /*border-bottom-style: solid;
+  border-width: 2px;
+  border-color: #C6426E;*/
+  border-bottom: solid 2px #283c86;
+  padding-bottom: 1em;
+  padding-top: 2em;
+  padding
+}
+
+.position{
+  background-color: #283c86;
+  color: white;
+  padding: 0.5em;
+  border-radius: 4px;
+  margin-right: 0.5em
+}
+
+@media (min-width:900px) {
+  th{
+    display: table-cell;
+  }
+  td{
+    width: auto;
+    display: table-cell;
+  }
+  td:nth-last-of-type(5){
+  font-size: 1em;
+  }
+  .content{
+    padding: 1.8em;
+  }
+}
+
+@media (max-width:600px) {
+  .content{
+    padding: 1em
+  }
+  td{
+    display: block;
+    width: 100%;
+  }
+  td:nth-last-of-type(5){
+    font-size: 2em;
+  }
+  th{
+    display: none;
+  }
+}
+
+@media (min-height:550px) {
+  .content{
+    height: 500px;
+  }
+}
