@@ -8,7 +8,7 @@ links.forEach(function(link){
     content.classList.remove("animate__fadeInDown");
     content.classList.add("animate__fadeOutUp");
     setTimeOut(function(){
-      location.href="/";
+      location.href="/boletines";
     },1000)
     return false;
   });
