@@ -305,13 +305,13 @@ export default {
         },
 
         async obtenerDatosCanto(nombreArreglo, url) {
-    try {
-      const response = await this.axios.get(url);
-      this[nombreArreglo] = response.data;
-    } catch (error) {
-      console.error(error);
-    }
-  },
+            try {
+                const response = await this.axios.get(url);
+                this[nombreArreglo] = response.data;
+            } catch (error) {
+                console.error(error);
+            }
+        },
 
         async llenar_misas() {
             const api_data = await this.axios.get('/misa/misa_base/');
@@ -353,21 +353,21 @@ export default {
         },
 
         async guardar_misa() {
-    if (this.nueva_misa.mi_id) {
-      await this.axios
-        .put(`/misa/editar_misa/${this.nueva_misa.mi_id}`, this.nueva_misa)
-        .then((response) => {
-          console.log(response.data); // Opcional: muestra la respuesta del servidor si es necesario
-          this.llenar_misas();
-          this.cancelar();
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      console.error("ID de misa no definido.");
-    }
-  },
+            if (this.nueva_misa.mi_id) {
+                await this.axios
+                .put(`/misa/editar_misa/${this.nueva_misa.mi_id}`, this.nueva_misa)
+                .then((response) => {
+                    console.log(response.data); // Opcional: muestra la respuesta del servidor si es necesario
+                    this.llenar_misas();
+                    this.cancelar();
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            } else {
+                console.error("ID de misa no definido.");
+            }
+        },
 
         editarMisa(item) {
             this.nueva_misa = {
@@ -390,18 +390,17 @@ export default {
         },
 
 
-async verDetalles(item) {
+        async verDetalles(item) {
 
-  const mi_id = item.mi_id;
-  const api_data = await this.axios.get(`/misa/misa_base/${mi_id}`);
-  const detallesMisa = api_data.data;
+            const mi_id = item.mi_id;
+            const api_data = await this.axios.get(`/misa/misa_base/${mi_id}`);
+            const detallesMisa = api_data.data;
 
-  this.misas = []; // Vaciar el arreglo de misas
-  this.misas.push(detallesMisa); // Agregar los detalles de la misa actual al arreglo
+            this.misas = []; // Vaciar el arreglo de misas
+            this.misas.push(detallesMisa); // Agregar los detalles de la misa actual al arreglo
 
-  this.d_dialog = true;
-},
-
+            this.d_dialog = true;
+        },
 
         mostrarDialogoAgregarMisa() {
             this.cancelar()
@@ -409,30 +408,30 @@ async verDetalles(item) {
         },
 
         guardarNuevaMisa() {
-        // Realizar acciones para guardar la nueva misa
-        // Puedes acceder a los datos de la nueva misa a través de this.nuevaMisa
-        // Por ejemplo, puedes enviar los datos al backend utilizando Axios
+            // Realizar acciones para guardar la nueva misa
+            // Puedes acceder a los datos de la nueva misa a través de this.nuevaMisa
+            // Por ejemplo, puedes enviar los datos al backend utilizando Axios
 
-        // Ejemplo de envío de datos utilizando Axios:
-        this.axios
-        .post('/misa/nueva_misa', this.nueva_misa)
-        .then(() => {
-            // Procesar respuesta exitosa (si es necesario)
-            this.llenar_misas(); // Actualizar la lista de misas
-            this.cancelar(); // Cerrar el diálogo
-        })
-        .catch((error) => {
-            // Procesar error (si es necesario)
-            console.error(error);
-        });
+            // Ejemplo de envío de datos utilizando Axios:
+            this.axios
+            .post('/misa/nueva_misa', this.nueva_misa)
+            .then(() => {
+                // Procesar respuesta exitosa (si es necesario)
+                this.llenar_misas(); // Actualizar la lista de misas
+                this.cancelar(); // Cerrar el diálogo
+            })
+            .catch((error) => {
+                // Procesar error (si es necesario)
+                console.error(error);
+            });
         },
     }
 };
 </script>
 
 <style>
-  .centered-title {
-    text-align: center;
-    margin: auto;
-  }
+    .centered-title {
+        text-align: center;
+        margin: auto;
+    }
 </style>
