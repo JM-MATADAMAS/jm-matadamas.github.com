@@ -102,7 +102,6 @@ router.post('/nueva_misa', async (req, res) => {
   }
 });
 
-
 router.put('/editar_misa/:mi_id', async (req, res) => {
   try {
     const mi_id = req.params.mi_id;

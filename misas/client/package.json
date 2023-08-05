@@ -13,6 +13,7 @@
     "core-js": "^3.8.3",
     "moment": "^2.29.4",
     "roboto-fontface": "*",
+    "url": "^0.11.1",
     "vue": "^2.7.14",
     "vue-axios": "^3.5.2",
     "vue-router": "^3.5.1",

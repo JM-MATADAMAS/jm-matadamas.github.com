@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //__dirname constante d
 
 // Importar archivos de rutas
 app.use ('/misa', require('./routes/misa'));
-
+app.use ('/cantos',require('./routes/todos-cantos'));
 // NOTAS
 
 // Express es un framework/modulo/paquete para manejar peteciones

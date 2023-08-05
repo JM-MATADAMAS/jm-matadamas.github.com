@@ -1,3 +1,5 @@
+<title>Estructuras del coro por misa</title>
+
 <template>
     <v-container>
         <v-app-bar app color="primary" dark>
@@ -12,7 +14,7 @@
                     <v-toolbar-title :style="{ fontFamily: 'Courier New', fontSize: '30px', fontWeight: 'bold' }">Misas</v-toolbar-title>
                     <v-spacer/>
                     <v-spacer/>
-                    <v-btn color="primary" @click="mostrarDialogoAgregarMisa">Agregar Misa</v-btn>
+                    <v-btn color="primary" @click="mostrarDialogoAgregarMisa()">Agregar Misa</v-btn>
                 </v-toolbar>
             </template>
             <template v-slot:item.actions="{ item }">
@@ -34,9 +36,9 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
-                        <v-row>
-                            <v-col cols="12">
-                                <v-date-picker v-model="nueva_misa.mi_fecha" label="Fecha"></v-date-picker>
+                        <v-row justify="center">
+                            <v-col cols="12" class="text-center">
+                                <v-text-field v-model="nueva_misa.mi_fecha" label="Fecha"></v-text-field>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -101,10 +103,13 @@
       <v-dialog v-model="d_dialog" max-width="500px">
         <v-card>
             <v-card-title>Cantos de la misa</v-card-title>
+            <v-card-title>Pulsar salir SI o SI</v-card-title>
                 <v-card-text>
                     <v-container>
                         <v-row v-for="(item, index) in misas" :key="index">
                             <v-col cols="12">
+                                <v-text-field class="centered-title" label="Fecha" v-model="item.mi_fecha" 
+                                :style="{ fontFamily: 'Courier New', fontSize: '30px', fontWeight: 'bold' }" disabled></v-text-field>
                                 <v-text-field label="Entrada" v-model="item.mi_entrada" disabled></v-text-field>
                                 <v-text-field label="Piedad" v-model="item.mi_piedad" disabled></v-text-field>
                                 <v-text-field label="Gloria" v-model="item.mi_gloria" disabled></v-text-field>
@@ -133,17 +138,17 @@
                             <v-row>
                                 <v-col cols="6">
                                     <v-menu
-                                        v-model="fechaPickerVisible"
-                                        :close-on-content-click="false"
-                                        transition="scale-transition"
-                                        offset-y
+                                    v-model="fechaPickerVisible"
+                                    :close-on-content-click="false"
+                                    transition="scale-transition"
+                                    offset-y
                                     >
                                         <template v-slot:activator="{ on }">
                                             <v-text-field
-                                                v-model="nueva_misa.mi_fecha"
-                                                label="Fecha"
-                                                readonly
-                                                v-on="on"
+                                            v-model="nueva_misa.mi_fecha"
+                                            label="Fecha"
+                                            readonly
+                                            v-on="on"
                                             ></v-text-field>
                                         </template>
                                         <v-date-picker v-model="nueva_misa.mi_fecha"></v-date-picker>
@@ -212,9 +217,12 @@
 
   
 <script>
+import cantos from '@/views/cantos.vue'
 export default {
-    name: 'admin',
-
+    name: 'home',
+    components:{
+        cantos
+    },
     data() {
         return {
             
@@ -226,29 +234,14 @@ export default {
             ],
 
             misas: [],
-
+            
             nm_dialog: false,
             d_dialog:false,
             fechaPickerVisible: false,
             mostrarDialogo: false,
+            cantos_vue:false,
 
             nueva_misa: {
-                mi_fecha: '',
-                mi_tipo: '',
-                mi_entrada: '',
-                mi_piedad: '',
-                mi_gloria: '',
-                mi_salmo: '',
-                mi_aleluya: '',
-                mi_ofertorio: '',
-                mi_santo: '',
-                mi_cordero: '',
-                mi_comunion: '',
-                mi_salida: '',
-                mi_comentario: '',
-            },
-
-            nuevaMisa: {
                 mi_fecha: '',
                 mi_tipo: '',
                 mi_entrada: '',
@@ -270,39 +263,56 @@ export default {
             
             tipo:['Ordinario', 'Contrato', 'XV años', 'Boda', 'Bautizo', 'Oficio', 'Otro'],
 
-            entrada:['Venimos hoy a tu altar', 'Vienen con alegría', 'Den al señor sus alabanzas', 'Aquí estoy señor', 
-						'Al fin', 'Quince años', 'Que alegría cuando me dijeron', 'Tú eres fiel', 'Que viva mi cristo', 
-						'En torno a tu altar', '*No hay*', '*No aplica*'],
+            entrada: [],
 
-            piedad:['Popular', 'Triste', 'Brandon', 'Rocker', '*No hay*', '*No aplica*'],
+            piedad:[],
 
-            gloria:['90', 'Mejía', 'Rítmico', 'Panamericano', 'Popular', '*No hay*', '*No aplica*'],
+            gloria:[],
 
-            salmo: ['Lento', 'Rapido', 'Otro ritmo', '*No hay*', '*No aplica*'],
+            salmo: [],
 
-            aleluya:['Solemne', 'Al salvador', 'Popular', 'Karla', 'Javi', 'Ángel', 'Honor y gloria', 
-						'Honor y gloria alternativo', '*No hay*', '*No aplica*'],
-            ofertorio:['Vino y pan', 'Este pan y vino', 'Esto que te doy', 'Te ofrezco, señor, mi juventud',
-						'Tómalo, acéptalo', 'Nuestro corazón', 'Te presentamos', 'En tus manos', '*No hay*', '*No aplica*'],
+            aleluya:[],
+            ofertorio:[],
             
-            santo:['La-Mi-Do', 'Edith', 'Gabi', 'Rondalla', '3 Hosanas', 'Hosana', 'Choco', '*No hay*', '*No aplica*'],
+            santo:[],
 
-            cordero: ['Popular', 'Juvenil', 'Choco', '94', 'Roy', 'Marcha', 'Doble', '*No hay*', '*No aplica*'],
+            cordero: [],
 
-            comunion: ['El vino', 'Llévame', 'La promesa', 'Abba padre', 'Una espiga', 'Andando de tu mano, Dios está aqui',
-						'Las heridas de tu frente', 'Un instrumento de tu amor', 'Ven señor Jesus', 'Un día caminaba', 'Heroe',
-						'Dialogo con Cristo', '*No hay*', '*No aplica*'],
+            comunion: [],
             
-            salida:['Alma misionera', 'Te doy gracias Jesus', 'Dios es amor', 'Cristo no defrauda', 'Fragmento a Dios',
-						 'Viva cristo rey', '*No hay*', '*No aplica*']
+            salida:[]
         };
     },
 
     created() {
         this.llenar_misas();
+        this.obtenerDatosCanto('entrada', '/cantos/todos_entrada');
+        this.obtenerDatosCanto('piedad', '/cantos/todos_piedad');
+        this.obtenerDatosCanto('gloria', '/cantos/todos_gloria');
+        this.obtenerDatosCanto('salmo', '/cantos/todos_salmo');
+        this.obtenerDatosCanto('aleluya', '/cantos/todos_aleluya');
+        this.obtenerDatosCanto('ofertorio', '/cantos/todos_ofertorio');
+        this.obtenerDatosCanto('santo', '/cantos/todos_santo');
+        this.obtenerDatosCanto('cordero', '/cantos/todos_cordero');
+        this.obtenerDatosCanto('comunion', '/cantos/todos_comunion');
+        this.obtenerDatosCanto('salida', '/cantos/todos_salida');
     },
 
     methods: {
+
+        cantos(){
+            this.cantos_vue=true;
+        },
+
+        async obtenerDatosCanto(nombreArreglo, url) {
+    try {
+      const response = await this.axios.get(url);
+      this[nombreArreglo] = response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+
         async llenar_misas() {
             const api_data = await this.axios.get('/misa/misa_base/');
             this.misas = api_data.data.map((misa) => ({
@@ -381,6 +391,7 @@ export default {
 
 
 async verDetalles(item) {
+
   const mi_id = item.mi_id;
   const api_data = await this.axios.get(`/misa/misa_base/${mi_id}`);
   const detallesMisa = api_data.data;
@@ -393,22 +404,8 @@ async verDetalles(item) {
 
 
         mostrarDialogoAgregarMisa() {
+            this.cancelar()
             this.mostrarDialogo = true;
-            this.nuevaMisa = {
-                mi_fecha: '',
-                mi_tipo: '',
-                mi_entrada: '',
-                mi_piedad: '',
-                mi_gloria: '',
-                mi_salmo: '',
-                mi_aleluya: '',
-                mi_ofertorio: '',
-                mi_santo: '',
-                mi_cordero: '',
-                mi_comunion: '',
-                mi_salida: '',
-                mi_comentario: '',
-            };
         },
 
         guardarNuevaMisa() {
