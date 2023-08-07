@@ -29,8 +29,8 @@ export default {
 
 <style>
 #app {
-  background: url('../../mario.gif')
-    no-repeat center center fixed !important;
+  background: url('../../messi_mundial.webp');
+
   background-size: cover;
 }
 </style>

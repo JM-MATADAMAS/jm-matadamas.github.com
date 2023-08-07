@@ -5,7 +5,7 @@ const connection = require('../connection');
 
 router.get('/misa_base', async (req, res) => {
   try {
-    const query = 'SELECT * FROM misa';
+    const query = 'SELECT * FROM misa ORDER BY mi_fecha;';
     const misa = await connection.query(query);
 
     // Formatear la fecha en cada objeto de misa
@@ -27,7 +27,7 @@ router.get('/misa_base', async (req, res) => {
   }
 });
 
-router.get('/misa_base/:mi_id', async (req, res) => {
+router.get('/misabase/:mi_id', async (req, res) => {
   try {
     const mi_id = req.params.mi_id;
     const query = 'SELECT * FROM misa WHERE mi_id = ?';
@@ -56,8 +56,6 @@ router.get('/misa_base/:mi_id', async (req, res) => {
     });
   }
 });
-
-
 
 router.delete('/eliminar_misa', async (req, res) => {
   try {

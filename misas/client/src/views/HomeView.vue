@@ -37,12 +37,10 @@
                 <v-card-text>
                     <v-container>
                         <v-row justify="center">
-                            <v-col cols="12" class="text-center">
+                            <v-col cols="6" class="text-center">
                                 <v-text-field v-model="nueva_misa.mi_fecha" label="Fecha"></v-text-field>
                             </v-col>
-                        </v-row>
-                        <v-row>
-                            <v-col cols="12"     align-self="auto">
+                            <v-col cols="6" align-self="auto">
                                 <v-select v-model="nueva_misa.mi_tipo" :items="tipo" label="Tipo"></v-select>
                             </v-col>
                         </v-row>
@@ -151,7 +149,7 @@
                                             v-on="on"
                                             ></v-text-field>
                                         </template>
-                                        <v-date-picker v-model="nueva_misa.mi_fecha"></v-date-picker>
+                                        <v-date-picker show-adjacent-months v-model="nueva_misa.mi_fecha"></v-date-picker>
                                     </v-menu>
                                 </v-col>
                                 <v-col cols="6">
@@ -272,6 +270,7 @@ export default {
             salmo: [],
 
             aleluya:[],
+            
             ofertorio:[],
             
             santo:[],
@@ -393,7 +392,7 @@ export default {
         async verDetalles(item) {
 
             const mi_id = item.mi_id;
-            const api_data = await this.axios.get(`/misa/misa_base/${mi_id}`);
+            const api_data = await this.axios.get(`/misa/misabase/${mi_id}`);
             const detallesMisa = api_data.data;
 
             this.misas = []; // Vaciar el arreglo de misas
