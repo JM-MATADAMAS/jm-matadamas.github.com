@@ -403,7 +403,21 @@ export default {
         },
 
         mostrarDialogoAgregarMisa() {
-            this.cancelar()
+            this.nueva_misa = {
+                mi_fecha: '',
+                mi_tipo: '',
+                mi_entrada: '',
+                mi_piedad: '',
+                mi_gloria: '',
+                mi_salmo: '',
+                mi_aleluya: '',
+                mi_ofertorio: '',
+                mi_santo: '',
+                mi_cordero: '',
+                mi_comunion: '',
+                mi_salida: '',
+                mi_comentario: '',
+            };
             this.mostrarDialogo = true;
         },
 

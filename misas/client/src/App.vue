@@ -5,7 +5,7 @@
       color="primary"
       dark
     >
-      <v-toolbar-title>misas</v-toolbar-title>
+    <v-toolbar-title>misas</v-toolbar-title>
     </v-app-bar>
 
     <v-main>
