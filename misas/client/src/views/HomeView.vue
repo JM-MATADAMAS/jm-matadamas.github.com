@@ -5,7 +5,7 @@
         <v-app-bar app color="primary" dark>
             <v-toolbar-title :style="{ fontFamily: 'Courier New', fontSize: '30px', fontWeight: 'bold' }">Coros</v-toolbar-title>
             <v-spacer/><v-spacer/>
-            <v-toolbar-title :style="{ fontFamily: 'Courier New', fontSize: '30px', fontWeight: 'bold' }">SH</v-toolbar-title>
+            <v-toolbar-title :style="{ fontFamily: 'Courier New', fontSize: '30px', fontWeight: 'bold' }"></v-toolbar-title>
         </v-app-bar>
         <!-- Tabla de Misas -->
         <v-data-table :headers="encabezados" :items="misas" :items-per-page="15" :class="elevation-1">

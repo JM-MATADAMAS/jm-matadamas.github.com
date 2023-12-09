@@ -29,7 +29,7 @@ export default {
 
 <style>
 #app {
-  background: url('../../messi_mundial.webp');
+  background: url('../../mario.gif');
 
   background-size: cover;
 }
